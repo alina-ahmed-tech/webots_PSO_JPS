@@ -78,6 +78,11 @@ def run_pso(active_robots, available_zones):
             if new_score > p_best_scores[i]:  # MAXIMIZE fitness
                 p_best[i] = new_p
                 p_best_scores[i] = new_score
+                
+                # UPDATE global best if this personal best beats it ------------
+                if new_score > g_best_score:
+                    g_best_score = new_score
+                    g_best       = new_p.copy()
 
         current_best = max(p_best_scores)
         print(f"[PSO Iter {iteration + 1}] Best fitness: {current_best:.2f}")
